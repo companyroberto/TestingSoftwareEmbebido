@@ -1,0 +1,17 @@
+---
+:source:
+  :path: test
+  :file: test_sensores.c
+:successes: []
+:failures:
+- :test: test_sensor_inicializar_hardware
+  :line: 14
+  :message: Empezamos
+:ignores: []
+:counts:
+  :total: 1
+  :passed: 0
+  :failed: 1
+  :ignored: 0
+:stdout: []
+:time: 0.0013489920002029976
