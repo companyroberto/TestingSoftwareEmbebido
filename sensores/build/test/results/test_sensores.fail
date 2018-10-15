@@ -5,8 +5,8 @@
 :successes: []
 :failures:
 - :test: test_sensor_inicializar_hardware
-  :line: 14
-  :message: Empezamos
+  :line: 17
+  :message: Expected 0 Was 14
 :ignores: []
 :counts:
   :total: 1
@@ -14,4 +14,4 @@
   :failed: 1
   :ignored: 0
 :stdout: []
-:time: 0.0013489920002029976
+:time: 0.00176844699853973
