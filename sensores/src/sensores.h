@@ -17,11 +17,11 @@ enum sensor_modo {
 };
 
 typedef struct {
-    uint8_t IDSensor;                    // 0, 1, 2...
-    uint8_t pin;                         // gpioMap_t pin;
-    uint8_t estado;                      // Sensado = Hay Datos / Sin Sensar = No hay datos.
-    uint16_t valor;                      // 30 = 30 grados Centigrados.
-    uint8_t segTrasmitido;               // Segundos de reloj al momento de trasmitir.
+    uint8_t IDSensor;								// 0, 1, 2...
+    uint8_t pin;								// gpioMap_t pin;
+    uint8_t estado;								// Sensado = Hay Datos / Sin Sensar = No hay datos.
+    uint16_t valor;								// 30 = 30 grados Centigrados.
+    uint8_t segTrasmitido;							// Segundos de reloj al momento de trasmitir.
 } Sensor_t;
 
 
