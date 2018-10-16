@@ -278,21 +278,17 @@ void test_inicializa_hardware_normal_ds1_sensor_chequear_varios_en_tiempo(void){
 
 
 
+ char mensaje[20];
+
  for(uint8_t indice = 0; indice < sizeof(sensores) / sizeof( Sensores_t ); indice++) {
+
+  sprintf(mensaje, "sensores[%d]", indice);
 
   int8_t leer_dato = sensor_leer_dato( &sensor );
 
-  UnityAssertEqualNumber((UNITY_INT)((sensores[indice]._leer_dato)), (UNITY_INT)((leer_dato)), (
+  UnityAssertEqualNumber((UNITY_INT)((sensores[indice]._leer_dato)), (UNITY_INT)((leer_dato)), ((mensaje)), (UNITY_UINT)(144), UNITY_DISPLAY_STYLE_INT);
 
- ((void *)0)
-
- ), (UNITY_UINT)(142), UNITY_DISPLAY_STYLE_INT);
-
-  UnityAssertEqualNumber((UNITY_INT)((sensores[indice]._valor)), (UNITY_INT)((sensor.valor)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(143), UNITY_DISPLAY_STYLE_INT);
+  UnityAssertEqualNumber((UNITY_INT)((sensores[indice]._valor)), (UNITY_INT)((sensor.valor)), ((mensaje)), (UNITY_UINT)(145), UNITY_DISPLAY_STYLE_INT);
 
  }
 

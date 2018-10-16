@@ -137,10 +137,12 @@ void test_inicializa_hardware_normal_ds1_sensor_chequear_varios_en_tiempo(void){
 	uint8_t chequear = sensor_chequear( segActuales );
 	TEST_ASSERT_EQUAL( 1, chequear );
 
+	char mensaje[20];
 	for(uint8_t indice = 0; indice < sizeof(sensores) / sizeof( Sensores_t ); indice++) {
+		sprintf(mensaje, "sensores[%d]", indice);
 		int8_t leer_dato = sensor_leer_dato( &sensor );
-		TEST_ASSERT_EQUAL( sensores[indice]._leer_dato, leer_dato );
-		TEST_ASSERT_EQUAL( sensores[indice]._valor, sensor.valor );
+		TEST_ASSERT_EQUAL_MESSAGE( sensores[indice]._leer_dato, leer_dato, mensaje );
+		TEST_ASSERT_EQUAL_MESSAGE( sensores[indice]._valor, sensor.valor, mensaje );
 	}
 }
 
