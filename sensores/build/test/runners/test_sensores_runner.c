@@ -43,6 +43,7 @@ extern void setUp(void);
 extern void tearDown(void);
 extern void test_inicializa_hardware_normal_ds1(void);
 extern void test_inicializa_hardware_falla_ds1(void);
+extern void test_inicializa_hardware_normal_ds1_sensor_chequear_fuera_de_tiempo(void);
 
 
 /*=======Mock Management=====*/
@@ -98,7 +99,8 @@ int main(void)
   suite_setup();
   UnityBegin("test_sensores.c");
   RUN_TEST(test_inicializa_hardware_normal_ds1, 36);
-  RUN_TEST(test_inicializa_hardware_falla_ds1, 47);
+  RUN_TEST(test_inicializa_hardware_falla_ds1, 48);
+  RUN_TEST(test_inicializa_hardware_normal_ds1_sensor_chequear_fuera_de_tiempo, 59);
 
   CMock_Guts_MemFreeFinal();
   return suite_teardown(UnityEnd());

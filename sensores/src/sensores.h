@@ -27,6 +27,6 @@ typedef struct {
 
 /* === Declaraciones de funciones externas ================================= */
 
-int8_t	sensor_inicializar_hardware( );
-int8_t  sensor_leer_dato           ( int8_t _idSensor           );
+uint8_t	sensor_inicializar_hardware( uint8_t segTrasmitirDatos );
+uint8_t	sensor_chequear            ( uint8_t segActuales );
 void	reset_variables_static     ( );

@@ -7,15 +7,19 @@
   :line: 36
   :message: ''
 - :test: test_inicializa_hardware_falla_ds1
-  :line: 47
+  :line: 48
+  :message: ''
+- :test: test_inicializa_hardware_normal_ds1_sensor_chequear_fuera_de_tiempo
+  :line: 59
   :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 2
-  :passed: 2
+  :total: 3
+  :passed: 3
   :failed: 0
   :ignored: 0
 :stdout:
 - 'ds1: Found 1 device(s)'
-:time: 0.001244394006789662
+- 'ds1: Found 1 device(s)'
+:time: 0.0012294829939492047

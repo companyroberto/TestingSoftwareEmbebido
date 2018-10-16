@@ -20,6 +20,7 @@
 
 static int8_t ds1_num_devices = 0;
 static Sensor_t sensor_conectado[MAX_SENSORES];
+static uint8_t segTrasmitirDatos;
 
 
 /* === Declaraciones de funciones internas ================================= */
@@ -34,11 +35,12 @@ static uint8_t nivelDebug = 1;
 /* === Definiciones de funciones externas ================================== */
 
 
-int8_t
-sensor_inicializar_hardware(  )
+uint8_t
+sensor_inicializar_hardware( uint8_t _segTrasmitirDatos )
 {
     int8_t resultado = 14;                                                	// Error al inicializar hardware
 
+    segTrasmitirDatos = _segTrasmitirDatos;
     
     // Initialize the ds1 array to DS1820 objects
     while( unassignedProbe( ds1_DATA_PIN ) ) {
@@ -58,6 +60,29 @@ sensor_inicializar_hardware(  )
     return resultado;
 }
 
+
+uint8_t
+sensor_chequear
+( uint8_t segActuales )
+{
+    int8_t resultado = 0;                           				// No hay datos
+
+    for (int i = 0; i < ds1_num_devices; i++){
+
+        int8_t diferencia = (sensor_conectado[i].segTrasmitido > segActuales) ? sensor_conectado[i].segTrasmitido - segActuales : segActuales - sensor_conectado[i].segTrasmitido;
+
+        if ( diferencia >= segTrasmitirDatos ){
+
+            convertTemperature( sensor_conectado[i].IDSensor );
+            sensor_conectado[i].valor = temperature( sensor_conectado[i].IDSensor );
+            sensor_conectado[i].estado = Sensado;
+            sensor_conectado[i].segTrasmitido = segActuales;
+            resultado = 1;                          				// Hay datos
+        }
+    }
+
+    return resultado;
+}
 
 
 /* === Definiciones de funciones internas =================================- */
@@ -80,8 +105,8 @@ void
 reset_variables_static
 ( )
 {
-    ds1_num_devices = 0;
-    // Sensor_t sensor_conectado[MAX_SENSORES];
-
+    ds1_num_devices   = 0;
+    segTrasmitirDatos = 0;
 }
+
 
