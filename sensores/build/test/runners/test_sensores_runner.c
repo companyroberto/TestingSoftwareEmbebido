@@ -6,6 +6,8 @@
   Unity.CurrentTestName = #TestFunc; \
   Unity.CurrentTestLineNumber = TestLineNum; \
   Unity.NumberOfTests++; \
+  CMock_Init(); \
+  UNITY_CLR_DETAILS(); \
   if (TEST_PROTECT()) \
   { \
       setUp(); \
@@ -14,7 +16,9 @@
   if (TEST_PROTECT()) \
   { \
     tearDown(); \
+    CMock_Verify(); \
   } \
+  CMock_Destroy(); \
   UnityConcludeTest(); \
 }
 
@@ -23,10 +27,12 @@
 #define UNITY_INCLUDE_SETUP_STUBS
 #endif
 #include "unity.h"
+#include "cmock.h"
 #ifndef UNITY_EXCLUDE_SETJMP_H
 #include <setjmp.h>
 #endif
 #include <stdio.h>
+#include "mock_ds1820.h"
 
 int GlobalExpectCount;
 int GlobalVerifyOrder;
@@ -35,9 +41,25 @@ char* GlobalOrderError;
 /*=======External Functions This Runner Calls=====*/
 extern void setUp(void);
 extern void tearDown(void);
-extern void test_sensor_inicializar_hardware(void);
-extern void test_sensor_leer_dato(void);
+extern void test_inicializa_hardware_normal_ds1(void);
 
+
+/*=======Mock Management=====*/
+static void CMock_Init(void)
+{
+  GlobalExpectCount = 0;
+  GlobalVerifyOrder = 0;
+  GlobalOrderError = NULL;
+  mock_ds1820_Init();
+}
+static void CMock_Verify(void)
+{
+  mock_ds1820_Verify();
+}
+static void CMock_Destroy(void)
+{
+  mock_ds1820_Destroy();
+}
 
 /*=======Suite Setup=====*/
 static void suite_setup(void)
@@ -61,7 +83,10 @@ static int suite_teardown(int num_failures)
 void resetTest(void);
 void resetTest(void)
 {
+  CMock_Verify();
+  CMock_Destroy();
   tearDown();
+  CMock_Init();
   setUp();
 }
 
@@ -71,8 +96,8 @@ int main(void)
 {
   suite_setup();
   UnityBegin("test_sensores.c");
-  RUN_TEST(test_sensor_inicializar_hardware, 13);
-  RUN_TEST(test_sensor_leer_dato, 20);
+  RUN_TEST(test_inicializa_hardware_normal_ds1, 34);
 
+  CMock_Guts_MemFreeFinal();
   return suite_teardown(UnityEnd());
 }
