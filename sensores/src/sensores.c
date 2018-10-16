@@ -12,7 +12,7 @@
 
 /* === Definicion y Macros ================================================= */
 
-#define MAX_SENSORES    5
+#define MAX_SENSORES    5							// Establezco un máximo de 5 sensores por ds.
 #define ds1_DATA_PIN    27
 
 
@@ -52,8 +52,7 @@ sensor_inicializar_hardware(  )
             break;
     }
 
-
-    if (ds1_num_devices )
+    if ( ds1_num_devices )
         resultado = 0;                                                    	// Algún sensor se configuro				
 
     return resultado;
@@ -72,5 +71,17 @@ sensor_inicializar
     Sensor->estado =  sinSensar;
     Sensor->valor = 0;
     Sensor->segTrasmitido = 0;
+}
+
+
+/* === Definiciones de funciones de reinicio test =========================- */
+
+void
+reset_variables_static
+( )
+{
+    ds1_num_devices = 0;
+    // Sensor_t sensor_conectado[MAX_SENSORES];
+
 }
 

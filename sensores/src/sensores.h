@@ -17,7 +17,7 @@ enum sensor_modo {
 };
 
 typedef struct {
-    uint8_t IDSensor;                    // 01
+    uint8_t IDSensor;                    // 0, 1, 2...
     uint8_t pin;                         // gpioMap_t pin;
     uint8_t estado;                      // Sensado = Hay Datos / Sin Sensar = No hay datos.
     uint16_t valor;                      // 30 = 30 grados Centigrados.
@@ -29,4 +29,4 @@ typedef struct {
 
 int8_t	sensor_inicializar_hardware( );
 int8_t  sensor_leer_dato           ( int8_t _idSensor           );
-
+void	reset_variables_static     ( );
