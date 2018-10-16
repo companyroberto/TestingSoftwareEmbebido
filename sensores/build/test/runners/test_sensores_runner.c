@@ -36,6 +36,7 @@ char* GlobalOrderError;
 extern void setUp(void);
 extern void tearDown(void);
 extern void test_sensor_inicializar_hardware(void);
+extern void test_sensor_leer_dato(void);
 
 
 /*=======Suite Setup=====*/
@@ -71,6 +72,7 @@ int main(void)
   suite_setup();
   UnityBegin("test_sensores.c");
   RUN_TEST(test_sensor_inicializar_hardware, 13);
+  RUN_TEST(test_sensor_leer_dato, 20);
 
   return suite_teardown(UnityEnd());
 }

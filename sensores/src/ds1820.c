@@ -13,3 +13,9 @@ void    convertTemperature ( int8_t idSensor     )
 {
     // Se inicializa sensor
 }
+
+int8_t  temperature        ( int8_t idSensor     )
+{
+    return 5;	// valor sensado
+}
+

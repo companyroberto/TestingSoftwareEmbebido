@@ -6,12 +6,15 @@
 - :test: test_sensor_inicializar_hardware
   :line: 13
   :message: ''
+- :test: test_sensor_leer_dato
+  :line: 20
+  :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 1
-  :passed: 1
+  :total: 2
+  :passed: 2
   :failed: 0
   :ignored: 0
 :stdout: []
-:time: 0.0011231370008317754
+:time: 0.0012730970047414303
