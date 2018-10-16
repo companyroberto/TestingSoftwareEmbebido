@@ -29,4 +29,5 @@ typedef struct {
 
 uint8_t	sensor_inicializar_hardware( uint8_t segTrasmitirDatos );
 uint8_t	sensor_chequear            ( uint8_t segActuales );
+int8_t  sensor_leer_dato           ( Sensor_t * sensor );
 void	reset_variables_static     ( );

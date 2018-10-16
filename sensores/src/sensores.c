@@ -85,6 +85,32 @@ sensor_chequear
 }
 
 
+int8_t
+sensor_leer_dato
+( Sensor_t * sensor )
+{
+    int8_t resultado = 0;                           // No hay datos
+
+    int8_t i=0;
+    while( i < ds1_num_devices ){
+        if ( sensor_conectado[i].estado == Sensado ){
+            sensor->IDSensor        = sensor_conectado[i].IDSensor;
+            sensor->pin             = sensor_conectado[i].pin;
+            sensor->estado          = sensor_conectado[i].estado;
+            sensor->valor           = sensor_conectado[i].valor;
+            sensor->segTrasmitido   = sensor_conectado[i].segTrasmitido;
+            resultado = 1;                          // Hay datos
+
+            sensor_conectado[i].estado = sinSensar;
+            break;
+        }
+        i++;
+    }
+    //printf ("i = %d - resultado = %d \n\n", i, resultado);
+    return resultado;
+}
+
+
 /* === Definiciones de funciones internas =================================- */
 
 void

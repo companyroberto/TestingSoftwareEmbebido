@@ -4,22 +4,26 @@
   :file: test_sensores.c
 :successes:
 - :test: test_inicializa_hardware_normal_ds1
-  :line: 36
+  :line: 38
   :message: ''
 - :test: test_inicializa_hardware_falla_ds1
-  :line: 48
+  :line: 50
   :message: ''
 - :test: test_inicializa_hardware_normal_ds1_sensor_chequear_fuera_de_tiempo
-  :line: 59
+  :line: 61
+  :message: ''
+- :test: test_inicializa_hardware_normal_ds1_sensor_chequear_en_tiempo
+  :line: 77
   :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 3
-  :passed: 3
+  :total: 4
+  :passed: 4
   :failed: 0
   :ignored: 0
 :stdout:
 - 'ds1: Found 1 device(s)'
 - 'ds1: Found 1 device(s)'
-:time: 0.0012294829939492047
+- 'ds1: Found 1 device(s)'
+:time: 0.0016116110055008903
